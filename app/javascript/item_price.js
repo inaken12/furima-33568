@@ -5,7 +5,7 @@ function itemPrice () {
     const addTaxDom = document.getElementById("add-tax-price");
     addTaxDom.innerHTML = String(Math.floor(inputValue * 0.1)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     const profitDom = document.getElementById("profit");
-    profitDom.innerHTML = String(Math.floor(inputValue - inputValue * 0.1)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    profitDom.innerHTML = String(inputValue - Math.floor(inputValue * 0.1)).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
   });
 }
 
