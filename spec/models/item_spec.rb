@@ -7,11 +7,6 @@ RSpec.describe Item, type: :model do
     end
 
     it '全ての情報が適切に存在すれば商品出品できること' do
-      @item.category_id = 2
-      @item.condition_id = 2
-      @item.shipping_fee_id = 2
-      @item.state_id = 2
-      @item.shipping_day_id = 2
       expect(@item).to be_valid
     end
 
