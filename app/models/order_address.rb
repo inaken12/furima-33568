@@ -1,6 +1,6 @@
 class OrderAddress
-  include ActiveModel::ActiveModel
-  attr_accessor :token, :zipcode, :state_id, :city, :address_line_1, :address_line_2, :phone_number
+  include ActiveModel::Model
+  attr_accessor :token, :zipcode, :state_id, :city, :address_line_1, :address_line_2, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :token
@@ -14,4 +14,5 @@ class OrderAddress
   def save
     order = Order.create(user_id: user.id, item_id: item.id)
     Address.create(zipcode: zipcode, state_id: state_id, city: city, address_line_1: address_line_1, address_line_2: address_line_2, phone_number: phone_number, order_id: order.id)
+  end
 end
