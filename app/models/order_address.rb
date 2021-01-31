@@ -12,7 +12,7 @@ class OrderAddress
   validates :state_id, numericality: { other_than: 1, message: 'Select' }
 
   def save
-    order = Order.create(user_id: user.id, item_id: item.id)
+    order = Order.create(user_id: user_id, item_id: item_id)
     Address.create(zipcode: zipcode, state_id: state_id, city: city, address_line_1: address_line_1, address_line_2: address_line_2, phone_number: phone_number, order_id: order.id)
   end
 end
