@@ -4,10 +4,10 @@ class OrderAddress
 
   with_options presence: true do
     validates :token
-    validates :zipcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly" }
+    validates :zipcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'Input correctly' }
     validates :city
     validates :address_line_1
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "Input only number" }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'Input only number' }
     validates :user_id
     validates :item_id
   end
@@ -15,6 +15,7 @@ class OrderAddress
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    Address.create(zipcode: zipcode, state_id: state_id, city: city, address_line_1: address_line_1, address_line_2: address_line_2, phone_number: phone_number, order_id: order.id)
+    Address.create(zipcode: zipcode, state_id: state_id, city: city, address_line_1: address_line_1,
+                   address_line_2: address_line_2, phone_number: phone_number, order_id: order.id)
   end
 end

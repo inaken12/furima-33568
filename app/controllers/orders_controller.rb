@@ -21,11 +21,13 @@ class OrdersController < ApplicationController
   private
 
   def address_params
-    params.require(:order_address).permit(:zipcode, :state_id, :city, :address_line_1, :address_line_2, :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order_address).permit(:zipcode, :state_id, :city, :address_line_1, :address_line_2, :phone_number).merge(
+      token: params[:token], user_id: current_user.id, item_id: params[:item_id]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: address_params[:token],
@@ -38,8 +40,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id == @item.user_id || @item.order.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 end
