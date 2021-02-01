@@ -8,6 +8,8 @@ class OrderAddress
     validates :city
     validates :address_line_1
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "Input only number" }
+    validates :user_id
+    validates :item_id
   end
   validates :state_id, numericality: { other_than: 1, message: 'Select' }
 
